@@ -1031,44 +1031,126 @@
             }
         }
 
-        /* Responsive */
+        /* ============================================
+           RESPONSIVE TABLET (769px - 1024px)
+           ============================================ */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-stats-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        /* ============================================
+           DESKTOP: Hide hamburger button
+           ============================================ */
+        @media (min-width: 769px) {
+            .nav-toggle { display: none; }
+        }
+
+        /* ============================================
+           RESPONSIVE MOBILE (max-width: 768px)
+           ============================================ */
         @media (max-width: 768px) {
-            html {
-                cursor: auto;
-            }
-            .cursor, .cursor-follower {
-                display: none;
+            html { cursor: auto; }
+            .cursor, .cursor-follower { display: none; }
+
+            /* Navigation - Hamburger Style */
+            .nav-toggle {
+                display: block;
+                background: none;
+                border: none;
+                color: var(--text);
+                font-size: 1.5rem;
+                cursor: pointer;
+                z-index: 1001;
             }
 
             .nav-links {
-                display: none;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
-
-            .about-stats-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-cta {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                backdrop-filter: blur(20px);
                 flex-direction: column;
-                align-items: stretch;
-            }
-
-            .cta-btn {
                 justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.4s ease;
+                z-index: 1000;
+                display: flex;
             }
 
-            .float-element {
-                display: none;
+            .nav-links.active {
+                right: 0;
             }
+
+            .nav-links a {
+                font-size: 1.2rem;
+            }
+
+            /* Hero */
+            .hero { padding: 0 5%; }
+            .marquee-content span { font-size: 3rem; }
+            .hero h1 { letter-spacing: -1px; }
+            .hero-subtitle { font-size: 1rem; max-width: 100%; }
+            .hero-cta { flex-direction: column; gap: 1rem; }
+            .cta-btn { width: 100%; justify-content: center; }
+            .float-element { display: none; }
+            .scroll-text { bottom: 2rem; }
+
+            /* About */
+            .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .about-stats-grid { grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+            .about-stat-box { padding: 1rem; }
+            .about-stat-box h4 { font-size: 1.8rem; }
+
+            /* Skills */
+            .skills-grid { 
+                grid-template-columns: 1fr;
+                gap: 1rem; 
+            }
+            .skill-card { padding: 1.8rem; }
+
+            /* Experience - Timeline */
+            .timeline { padding-left: 0.5rem; }
+            .timeline::before { left: 0; }
+            .timeline-item { 
+                padding-left: 2rem; 
+                padding-bottom: 2rem; 
+            }
+            .timeline-item::before { 
+                left: -4px; 
+                width: 10px; 
+                height: 10px; 
+            }
+            .timeline-item h3 { font-size: 1.1rem; }
+
+            /* Projects */
+            .projects-grid { 
+                grid-template-columns: 1fr;
+                gap: 1.5rem; 
+            }
+            .project-image { height: 200px; }
+            .project-content { padding: 1.5rem; }
+
+            /* Contact */
+            .social-grid { gap: 1rem; }
+            .social-item { 
+                width: 50px; 
+                height: 50px; 
+                border-radius: 16px; 
+                font-size: 1.1rem; 
+            }
+            .contact-info-item { 
+                padding: 0.8rem; 
+                font-size: 0.9rem; 
+            }
+
+            /* Section padding lebih kecil di HP */
+            section { padding: 4rem 5%; }
         }
     </style>
 <base target="_blank">
@@ -1085,6 +1167,12 @@
     <!-- Navigation -->
     <nav>
         <a href="#" class="nav-logo">Hokini<span>.</span></a>
+        
+        <!-- Hamburger button untuk mobile -->
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')" aria-label="Menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        
         <ul class="nav-links">
             <li><a href="#about">about</a></li>
             <li><a href="#skills">skills</a></li>
@@ -1144,7 +1232,7 @@
     </section>
 
     <!-- About Section -->
-   <section class="about-section" id="about">
+    <section class="about-section" id="about">
         <div class="about-grid">
             <div class="about-visual">
                <img src="profil.png" alt="Hokini Lawrensia" style="width:100%; border-radius:20px;">
@@ -1156,7 +1244,7 @@
                     <span style="color: var(--accent);"></span>
                 </h2>
                 <p class="section-desc">
-                    hey, i'm Hokini Lawrensia!a 6th-semester student of 
+                    hey, i'm Hokini Lawrensia! a 6th-semester student of 
                     Communication Science majoring in Creative Media 
                     Communication at Universitas Kristen Petra. 
                     I've built a diverse portfolio spanning video production, photography, 
@@ -1179,8 +1267,10 @@
                     <div class="about-stat-box">
                         <h4>3+</h4>
                         <p>years grinding</p>
-                         <div class="about-stat-box">
                     </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Skills Section -->
